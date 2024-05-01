@@ -10,4 +10,7 @@ Solutions are on https://github.com/AIDecisions/VBA-challenge/tree/main/Submit
 
 Files are broken in 2 sections: 
  - Alphabetical_testing - which is a group of files used to develop the VBA code.
- - Multiple_year_stock_data - which is the actual Stock Data file 
+ - Multiple_year_stock_data - which is the actual Stock Data file
+
+# Note:
+ScriptForQuarterlyTicker.vbs is the script that is in both Excel files.
