@@ -133,9 +133,22 @@ Sub aggregateQuarterly(ws As Worksheet):
             Else
                 ws.Cells(rowBoard, 10).Interior.ColorIndex = 0
             End If
-            quarterlychangePerc = (closeAmount - openAmount) / openAmount
+            ' Check if openAmount is 0 to avoid the error when dividing by zero
+            If (openAmount = 0) Then
+                quarterlychangePerc = 0
+            Else
+                quarterlychangePerc = (closeAmount - openAmount) / openAmount
+            End If
             ws.Cells(rowBoard, 11).Value = quarterlychangePerc
             ws.Cells(rowBoard, 11).NumberFormat = "0.00%"
+            ' highlight cell depending on quarterly change percent value
+            If (quarterlychangePerc > 0) Then
+                ws.Cells(rowBoard, 11).Interior.ColorIndex = 4
+            ElseIf (quarterlychangePerc < 0) Then
+                ws.Cells(rowBoard, 11).Interior.ColorIndex = 3
+            Else
+                ws.Cells(rowBoard, 11).Interior.ColorIndex = 0
+            End If
             ws.Cells(rowBoard, 12).Value = totalStock
             ws.Cells(rowBoard, 13).Value = CStr(Year(dt)) + "Q" + CStr(quarter)
             rowBoard = rowBoard + 1
@@ -182,4 +195,5 @@ Sub aggregateQuarterly(ws As Worksheet):
     ws.Range("R3").NumberFormat = "0.00%"
     ws.Range("R4").NumberFormat = "General"
 End Sub
+
 
